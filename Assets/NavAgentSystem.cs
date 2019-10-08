@@ -1,4 +1,5 @@
 using ShackJam;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -35,6 +36,21 @@ public class NavMeshAgentToAgentSystem : ComponentSystem
                         agent.ReachedDestination = true;
                     }
                 }
+                
+                float lastDistanceToTarget = navMeshAgent.remainingDistance;
+                
+                if(navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance && agent.Think <= 0)
+                {
+                    float distanceToTarget = navMeshAgent.remainingDistance;
+                    if(lastDistanceToTarget - distanceToTarget < 1f)
+                    {
+                        Vector3 destination = navMeshAgent.destination;
+                        navMeshAgent.ResetPath();
+                        navMeshAgent.SetDestination(destination);
+                        lastDistanceToTarget = distanceToTarget;
+                        agent.Think = 1;
+                    }
+                }
                 //agent.NavmeshRealDestination = navMeshAgent.pathEndPosition;
             });
     }
@@ -42,18 +58,26 @@ public class NavMeshAgentToAgentSystem : ComponentSystem
 
 public class AgentSystem : JobComponentSystem
 {
+    [BurstCompile]
     private struct AgentReachedDestinationJob : IJobForEach<Translation, Agent>
     {
+        public float DeltaTime;
         public void Execute(ref Translation translation, ref Agent agent)
         {
-            var dist = math.distance(translation.Value, agent.Destination);
+            agent.Think -= DeltaTime;
+            //var dist = math.distance(translation.Value, agent.Destination);
             //if (dist <= agent.StoppingDistance)
-                //agent.ReachedDestination = true;
+            //agent.ReachedDestination = true;
         }
     }
     
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
-        return new AgentReachedDestinationJob().Schedule(this, inputDeps);
+        var handle =  new AgentReachedDestinationJob
+        {
+            DeltaTime = Time.deltaTime
+        }.Schedule(this, inputDeps);
+
+        return handle;
     }
 }

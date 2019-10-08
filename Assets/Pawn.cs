@@ -23,6 +23,8 @@ namespace ShackJam
         public float StoppingDistance;
         public bool ReachedDestination;
         public bool IsStopped;
+        
+        public float Think;
 
         public void SetDestination(float3 destinaton)
         {

@@ -27,7 +27,7 @@ public class PlayerPawnController : ComponentSystem
             
             
             if (RandomPoint(randomPos, range, out var point)) {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+                //Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
                 if(agent.ReachedDestination)
                     agent.SetDestination(randomPos);
             }
