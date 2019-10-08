@@ -46,7 +46,7 @@ namespace ShackJam
                         if (Physics.Raycast(ray, out var hit)) 
                         {
                             var objectHit = hit.transform;
-                            Debug.Log(objectHit);
+                            //Debug.Log(objectHit);
                             // Do something with the object that was hit by the raycast.
                         }
                     }
