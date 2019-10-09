@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Black
+  m_Name: Brown
   m_Shader: {fileID: 4800000, guid: 5ac51d8859e714b408d0aee6d024e5ec, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.7735849, g: 0.3401656, b: 0.13501246, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
