@@ -83,13 +83,17 @@ namespace ShackJam
         private void ConvertBodyRenderer(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             var rotationPivotSpringEntity = dstManager.CreateEntity();
+            #if UNITY_EDITOR
             dstManager.SetName(rotationPivotSpringEntity, "RotationSpring");
+            #endif
             dstManager.AddComponentData(rotationPivotSpringEntity, new Spring(math.radians(BodyRenderer.RotationOffset), 0.00001f));
             dstManager.AddBuffer<SoftForceElement>(rotationPivotSpringEntity);
             
             
             var toonrenderEntity = dstManager.CreateEntity();//;conversionSystem.GetPrimaryEntity(BodyRenderer.gameObject));
-            
+#if UNITY_EDITOR
+            dstManager.SetName(toonrenderEntity, "ToonBody");
+#endif
             dstManager.AddComponentData(toonrenderEntity, new Parent{ Value = entity});
             dstManager.AddComponentData(toonrenderEntity, new LocalToParent());
             dstManager.AddComponentData(toonrenderEntity, new TransformationsToTransform());
