@@ -20,7 +20,7 @@ public class PawnWanderController : ComponentSystem
                     
                 ComponentType.ReadOnly<PawnTag>(),
                 ComponentType.ReadWrite<Agent>(),
-                ComponentType.ReadWrite<Pawn>()
+                ComponentType.ReadWrite<PawnController>()
 
             },
             None = new ComponentType[]
@@ -34,7 +34,7 @@ public class PawnWanderController : ComponentSystem
     {
         
         
-        Entities.With(ControlledPawnQuery).ForEach((Entity entity, Pawn pawn, ref Agent agent) =>
+        Entities.With(ControlledPawnQuery).ForEach((Entity entity, PawnController pawn, ref Agent agent) =>
         {
             //agent.SetDestination(mousepos);
             var randomPos = new float3(Random.Range(-5, 5), Random.Range(1, 1), Random.Range(-5, 5));

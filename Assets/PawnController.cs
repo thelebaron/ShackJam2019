@@ -41,8 +41,8 @@ namespace ShackJam
     
     [RequiresEntityConversion]
     [SelectionBase]
-    [RequireComponent(typeof(NavMeshAgent))]
-    public class Pawn : MonoBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
+    [RequireComponent(typeof(NavMeshAgent),typeof(ConvertToEntity))]
+    public class PawnController : MonoBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
     {
         public bool directControl;
         public BodyRenderer BodyRenderer { get; set; }
