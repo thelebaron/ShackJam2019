@@ -26,7 +26,7 @@ public class FeetController : MonoBehaviour
     public float3 LeftFootPositionB;
     public float3 RightFootPositionA;
     public float3 RightFootPositionB;
-
+    public float minVelocity = 1f;
     public float maxDistance = 0.45f;
     public float timer = 0.3f;
     public float maxTime = 0.15f;

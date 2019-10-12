@@ -12,7 +12,8 @@ public class PlayerPawnController : ComponentSystem
     protected override void OnCreate()
     {
         base.OnCreate();
-        ControlledPawnQuery = GetEntityQuery(typeof(DirectControlTag), typeof(PawnTag), typeof(Agent), typeof(PawnController));
+        ControlledPawnQuery = GetEntityQuery(typeof(DirectControlTag), typeof(PawnTag), typeof(Agent), typeof(PawnControllerAuthoring));
+        
     }
 
     protected override void OnUpdate()
@@ -27,7 +28,7 @@ public class PlayerPawnController : ComponentSystem
 
         
         
-        Entities.With(ControlledPawnQuery).ForEach((Entity entity, PawnController pawn, ref Agent agent) =>
+        Entities.With(ControlledPawnQuery).ForEach((Entity entity, PawnControllerAuthoring pawn, ref Agent agent) =>
         {
             agent.SetDestination(mousepos);
             

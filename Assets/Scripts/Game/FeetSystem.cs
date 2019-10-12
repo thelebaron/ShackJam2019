@@ -34,13 +34,13 @@ namespace ShackJam
                 
                 var dista = math.distance((float3)feet.TargetLeft.position/* + Position()*/, feet.LeftFoot.transform.position);
                 feet.currentDistanceL = dista;
-                if (dista > feet.maxDistance || agent.velocity.magnitude <= 1f)
+                if (dista > feet.maxDistance || agent.velocity.magnitude <= feet.minVelocity)
                 {
                     if (feet.timer >feet.maxTime && feet.switchFoot)
                         feet.LeftFoot.transform.position = (float3) feet.TargetLeft.position;// + Position();
                 }
                 var distb = math.distance((float3)feet.TargetRight.position/* + Position()*/, feet.RightFoot.transform.position);
-                if (distb > feet.maxDistance || agent.velocity.magnitude <= 1f)
+                if (distb > feet.maxDistance || agent.velocity.magnitude <= feet.minVelocity)
                 {
                     if (feet.timer > feet.maxTime && !feet.switchFoot)
                         feet.RightFoot.transform.position = (float3) feet.TargetRight.position;// + Position();

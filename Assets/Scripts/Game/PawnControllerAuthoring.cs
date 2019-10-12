@@ -42,7 +42,7 @@ namespace ShackJam
     [RequiresEntityConversion]
     [SelectionBase]
     [RequireComponent(typeof(NavMeshAgent),typeof(ConvertToEntity))]
-    public class PawnController : MonoBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
+    public class PawnControllerAuthoring : MonoBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
     {
         public bool directControl;
         public BodyRenderer BodyRenderer { get; set; }
@@ -74,6 +74,7 @@ namespace ShackJam
             });
             dstManager.AddComponentObject(entity, this);
             dstManager.AddComponentObject(entity, NavmeshAgent);
+            dstManager.AddComponentObject(entity, transform);
             dstManager.AddComponentData(entity, new CopyTransformFromGameObject());
             
             // Do conversion for the toon renderer

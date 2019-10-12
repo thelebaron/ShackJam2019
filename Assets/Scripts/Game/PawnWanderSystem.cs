@@ -20,7 +20,7 @@ public class PawnWanderController : ComponentSystem
                     
                 ComponentType.ReadOnly<PawnTag>(),
                 ComponentType.ReadWrite<Agent>(),
-                ComponentType.ReadWrite<PawnController>()
+                ComponentType.ReadWrite<PawnControllerAuthoring>()
 
             },
             None = new ComponentType[]
@@ -32,9 +32,7 @@ public class PawnWanderController : ComponentSystem
 
     protected override void OnUpdate()
     {
-        
-        
-        Entities.With(ControlledPawnQuery).ForEach((Entity entity, PawnController pawn, ref Agent agent) =>
+        Entities.With(ControlledPawnQuery).ForEach((Entity entity, PawnControllerAuthoring pawn, ref Agent agent) =>
         {
             //agent.SetDestination(mousepos);
             var randomPos = new float3(Random.Range(-5, 5), Random.Range(1, 1), Random.Range(-5, 5));
@@ -44,10 +42,6 @@ public class PawnWanderController : ComponentSystem
                 if(agent.ReachedDestination)
                     agent.SetDestination(randomPos);
             }
-            
-            
-
-            
         });
     }
     
