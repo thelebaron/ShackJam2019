@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 8709f43860cdafb43981805c81ea5668
+  m_SerializeEntries:
+  - m_GUID: 0c365a10ea8efad4ab79d0917a896923
+    m_Address: Assets/Materials/Shadowcaster.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 410ffbae1d95f2543a1c0b694bfe7997
+    m_Address: Assets/Materials/BlackNoShadow.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 43d143cdce6c7e5468abf2a11592841e
+    m_Address: Assets/Materials/Peach.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52383bc96938c304fb168db931b9969a
+    m_Address: Assets/Materials/Mouth.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52c5049108d2c194b9a315a6ac2d1e7f
+    m_Address: Assets/Materials/Silver.mat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+  - m_GUID: 5327db08296ee424caca3f6840329be4
+    m_Address: Assets/Materials/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5aec9c4c88650174aa0e12cb6d95f87b
+    m_Address: Assets/Materials/Yellow.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8b46685ac6f42a244b67d47fe24f0ff6
+    m_Address: Assets/Materials/Green.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9629cefc408f34546aa5e90fa92a01d1
+    m_Address: Assets/Materials/Irish.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 97bcf401a12074749b9c5f5d35425f83
+    m_Address: Assets/Materials/Brown.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a105b021834b65f49be98822acd0dae5
+    m_Address: Assets/Materials/HotPink.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a4667894b12ce5a48ac2bb1a09ca2c08
+    m_Address: Assets/Materials/Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b7677c8daede8944cb46bd0190352f7a
+    m_Address: Assets/Materials/TealDarker.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c62deed941f2c364b8f43f50e74d6aba
+    m_Address: Assets/Materials/Teal.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d9bddfc9afb32c64cad000295bf517f2
+    m_Address: Assets/Materials/MouthDark.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e403cdf7d274b4643bb04a712f80a28b
+    m_Address: Assets/Materials/Orange.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fe8cbe69cb791744db2634e539015fc1
+    m_Address: Assets/Materials/BrownDark.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 73a858400ad4ecf469647e0a2db20b23, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: dbc277c4b511a1941a86a96c0666fd34, type: 2}
+    - {fileID: 11400000, guid: b595e2fcd9858914c99fab2f40302611, type: 2}

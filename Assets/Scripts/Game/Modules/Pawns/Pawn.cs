@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Game.Components.Springs;
+using Game.Modules.Hybrid;
 using Game.Modules.Springs;
+using Game.Modules.Transforms;
 using Game.Utils;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -11,14 +13,22 @@ using UnityEngine.AI;
 
 namespace ShackJam
 {
-    public struct DirectControlTag : IComponentData
+    public struct DirectControlTag : IComponentData {}
+    public struct WanderTag : IComponentData {}
+
+    public enum StressBehaviour
     {
-        
+        Flee = 1,
+        Wander = 2,
+        Destination = 3,
+        AngryFollow = 4
     }
-    
-    public struct PawnTag : IComponentData
+
+    public struct PawnData : IComponentData
     {
-        
+        public float Stress;
+        public float3 StressDestination;
+        public StressBehaviour StressBehaviour;
     }
 
     public struct Agent : IComponentData
@@ -42,9 +52,10 @@ namespace ShackJam
     [RequiresEntityConversion]
     [SelectionBase]
     [RequireComponent(typeof(NavMeshAgent),typeof(ConvertToEntity))]
-    public class PawnControllerAuthoring : MonoBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
+    public class Pawn : EntityBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
     {
         public bool directControl;
+        public bool freeze;
         public BodyRenderer BodyRenderer { get; set; }
 
         public NavMeshAgent NavmeshAgent
@@ -57,14 +68,20 @@ namespace ShackJam
 
         
 
-        public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+        public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
+            base.Convert(entity,dstManager,conversionSystem);
             NavmeshAgent = GetComponent<NavMeshAgent>();
             BodyRenderer = GetComponentInChildren<BodyRenderer>();
             
-            dstManager.AddComponent<PawnTag>(entity);
+            dstManager.AddComponentData(entity,  new PawnData());
+            if(!freeze)
+                dstManager.AddComponentData(entity,  new WanderTag());
+            
             if(directControl)
                 dstManager.AddComponent<DirectControlTag>(entity);
+            
+            
             dstManager.AddComponentData(entity, new Agent
             {
                 Destination = transform.position,
@@ -76,6 +93,9 @@ namespace ShackJam
             dstManager.AddComponentObject(entity, NavmeshAgent);
             dstManager.AddComponentObject(entity, transform);
             dstManager.AddComponentData(entity, new CopyTransformFromGameObject());
+            dstManager.AddComponentData(entity, new CopyTransformToTranslationRotation());
+            dstManager.AddComponentData(entity, new Velocity());
+            dstManager.AddComponentData(entity, new NonUniformScale());
             
             // Do conversion for the toon renderer
             ConvertBodyRenderer(entity, dstManager, conversionSystem);

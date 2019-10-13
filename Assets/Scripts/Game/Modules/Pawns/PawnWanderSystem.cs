@@ -7,20 +7,19 @@ using Random = UnityEngine.Random;
 
 public class PawnWanderController : ComponentSystem
 {
-    public EntityQuery ControlledPawnQuery;
+    private EntityQuery wanderQuery;
     private float3 mousepos;
     protected override void OnCreate()
     {
         base.OnCreate();
-        ControlledPawnQuery = GetEntityQuery(new EntityQueryDesc
+        wanderQuery = GetEntityQuery(new EntityQueryDesc
         {
             All = new ComponentType[]
             {
-                //ComponentType.ReadOnly<BIGDOG>(),
-                    
-                ComponentType.ReadOnly<PawnTag>(),
+                ComponentType.ReadOnly<PawnData>(),
                 ComponentType.ReadWrite<Agent>(),
-                ComponentType.ReadWrite<PawnControllerAuthoring>()
+                ComponentType.ReadWrite<Pawn>(),
+                ComponentType.ReadOnly<WanderTag>(),
 
             },
             None = new ComponentType[]
@@ -32,11 +31,11 @@ public class PawnWanderController : ComponentSystem
 
     protected override void OnUpdate()
     {
-        Entities.With(ControlledPawnQuery).ForEach((Entity entity, PawnControllerAuthoring pawn, ref Agent agent) =>
+        Entities.With(wanderQuery).ForEach((Entity entity, Pawn pawn, ref Agent agent) =>
         {
             //agent.SetDestination(mousepos);
             var randomPos = new float3(Random.Range(-5, 5), Random.Range(1, 1), Random.Range(-5, 5));
-            if (RandomPoint(randomPos, range, out var point)) 
+            if (RandomPoint(randomPos, _range, out var point)) 
             {
                 //Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
                 if(agent.ReachedDestination)
@@ -44,8 +43,8 @@ public class PawnWanderController : ComponentSystem
             }
         });
     }
-    
-    public float range = 10.0f;
+
+    private readonly float _range = 10.0f;
     
     bool RandomPoint(Vector3 center, float range, out Vector3 result) 
     {
