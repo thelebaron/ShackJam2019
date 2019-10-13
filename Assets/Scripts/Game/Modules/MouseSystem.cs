@@ -48,6 +48,10 @@ namespace ShackJam
                             var objectHit = hit.transform;
                             playerInputData.CurrentMousePosition = hit.point;
 
+
+                            var interactable = objectHit.GetComponent<Interactable>();
+                            if (interactable != null)
+                                interactable.transform.localScale = interactable.recordedScale * 1.2f;
                             //Debug.Log(objectHit);
                             // Do something with the object that was hit by the raycast.
                         }

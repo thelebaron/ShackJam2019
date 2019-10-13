@@ -3,35 +3,66 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Modules.Hybrid;
 using ShackJam;
+using Unity.Mathematics;
 using UnityEngine;
 
+public enum DoorAxis
+{
+    x = 0,
+    y = 1,
+    z = 2
+}
 [SelectionBase]
-public class BathroomDoor : MonoBehaviour
+public class Door : MonoBehaviour
 {
     public bool isOpen;
 
     public bool isOpening;
-    private float angleOpen;
+    public DoorAxis axis;
+    public float3 openAngle;
+    public float3 closedAngle;
     
     private void Start()
     {
-        angleOpen = transform.rotation.eulerAngles.y + 90f;
+        //angleOpen = transform.rotation.eulerAngles.y + 90f;
     }
 
-    void Update()
+    private void Update()
     {
+        
+        
         if (isOpening)
         {
             transform.Rotate(Vector3.up * 15);
         }
 
         var yangle = transform.rotation.eulerAngles.y;
-        if (yangle >= 90f)
+        if (yangle >= openAngle.y)
         {
             isOpening = false;
             
         }
-            
+
+        switch (axis)
+        {
+            case DoorAxis.x:
+            {
+                
+            }
+                break;
+            case DoorAxis.y:
+            {
+                
+            }
+                break;
+            case DoorAxis.z:
+            {
+                
+            }
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,5 +84,15 @@ public class BathroomDoor : MonoBehaviour
             
         }
         
+    }
+
+    public void SetOpenState()
+    {
+        openAngle = transform.rotation.eulerAngles;
+    }
+
+    public void SetClosedState()
+    {
+        closedAngle = transform.rotation.eulerAngles;
     }
 }
