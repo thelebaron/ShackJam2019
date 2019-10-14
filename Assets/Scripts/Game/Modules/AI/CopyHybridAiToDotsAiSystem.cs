@@ -23,6 +23,8 @@ namespace Game.Modules
         {
             Entities.With(ControlledPawnQuery).ForEach((Entity entity, NavMeshAgent hybridAgent, ref Agent dotsAgent) =>
             {
+                if(!hybridAgent.enabled)
+                    return;
                 // Copy from
                 {
                     hybridAgent.destination = dotsAgent.Destination;
