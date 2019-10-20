@@ -1,26 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using ShackJam;
-using Unity.Burst;
-using Unity.Collections;
-using Unity.Entities;
-using Unity.Jobs;
-using Unity.Mathematics;
-using Unity.Physics;
-using Unity.Physics.Systems;
-using Unity.Transforms;
+﻿using Unity.Entities;
 using UnityEngine;
 
 public class DormantBehaviour : MonoBehaviour, IConvertGameObjectToEntity
 {
-    public Rigidbody rb;
+    private Rigidbody m_Rigidbody;
     public float delaySimulationTime = 5;
     
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        m_Rigidbody = GetComponent<Rigidbody>();
     }
 
     
@@ -34,7 +23,7 @@ public class DormantBehaviour : MonoBehaviour, IConvertGameObjectToEntity
         if(delaySimulationTime>0)
             return;
         
-        if (rb.velocity.magnitude > 1)
+        if (m_Rigidbody.velocity.magnitude > 2)
         {
             Destroy(gameObject);
         }
@@ -51,7 +40,7 @@ public struct PhysicsSleep : IComponentData
     
 }
 
-
+/*
 public class AwakenPhysicsSystem : JobComponentSystem
 {
     //[BurstCompile]
@@ -129,4 +118,4 @@ public class AwakenPhysicsSystem : JobComponentSystem
         physicsWorldSystem = Unity.Entities.World.Active.GetOrCreateSystem<Unity.Physics.Systems.BuildPhysicsWorld>();
 
     }
-}
+}*/
