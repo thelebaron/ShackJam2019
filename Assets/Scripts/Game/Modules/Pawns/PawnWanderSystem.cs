@@ -24,7 +24,7 @@ public class PawnWanderController : ComponentSystem
             },
             None = new ComponentType[]
             {
-                    ComponentType.ReadOnly<DirectControlTag>(),
+                    ComponentType.ReadOnly<PlayerControlTag>(),
             }
         });
     }

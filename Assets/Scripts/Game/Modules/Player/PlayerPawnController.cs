@@ -13,7 +13,7 @@ public class PlayerPawnController : ComponentSystem
     protected override void OnCreate()
     {
         base.OnCreate();
-        ControlledPawnQuery = GetEntityQuery(typeof(DirectControlTag), typeof(PawnData), typeof(Agent), typeof(Pawn));
+        ControlledPawnQuery = GetEntityQuery(typeof(PlayerControlTag), typeof(PawnData), typeof(Agent), typeof(Pawn));
         var clickPosGo = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         clickView = clickPosGo.transform;
         clickView.localScale = 0.35f * Vector3.one;

@@ -13,7 +13,7 @@ using UnityEngine.AI;
 
 namespace ShackJam
 {
-    public struct DirectControlTag : IComponentData {}
+    public struct PlayerControlTag : IComponentData {}
     public struct WanderTag : IComponentData {}
 
     public enum StressBehaviour
@@ -79,7 +79,7 @@ namespace ShackJam
                 dstManager.AddComponentData(entity,  new WanderTag());
             
             if(directControl)
-                dstManager.AddComponent<DirectControlTag>(entity);
+                dstManager.AddComponent<PlayerControlTag>(entity);
             
             
             dstManager.AddComponentData(entity, new Agent

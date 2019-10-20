@@ -70,7 +70,7 @@ public class Door : MonoBehaviour
         if (other.transform.GetComponent<EntityBehaviour>())
         {
             var eb = other.transform.GetComponent<EntityBehaviour>();
-            if (eb.EntityManager.HasComponent<DirectControlTag>(eb.Entity))
+            if (eb.EntityManager.HasComponent<PlayerControlTag>(eb.Entity))
             {
                 //Debug.Log("HasComponent");
                 if (isOpen)

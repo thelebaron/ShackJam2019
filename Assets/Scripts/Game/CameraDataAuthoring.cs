@@ -58,7 +58,7 @@ public class CameraSystem : ComponentSystem
             }
         });
         
-        controlledQuery = GetEntityQuery(typeof(DirectControlTag), typeof(Transform));
+        controlledQuery = GetEntityQuery(typeof(PlayerControlTag), typeof(Transform));
 
     }
 
