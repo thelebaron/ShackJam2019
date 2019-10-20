@@ -9,16 +9,16 @@ using UnityEngine;
 public class ProximityEnabler : MonoBehaviour
 {
 
-    public GameObject Player;
+    public StressBehaviour StressReceiver;
 
-    public bool HasCompletedBehaviour;
-    public List<Rigidbody> m_ChildRigidbodies = new List<Rigidbody>();
-    public Collider m_Collider;
+    [SerializeField] private bool HasCompletedBehaviour;
+    [SerializeField] private List<Rigidbody> m_ChildRigidbodies = new List<Rigidbody>();
+    [SerializeField]private BoxCollider m_Collider;
     
     void Start()
     {
 
-        m_Collider = GetComponent<Collider>();
+        m_Collider = GetComponent<BoxCollider>();
         m_Collider.isTrigger = true;
         
         var list = GetComponentsInChildren(typeof(Rigidbody));
@@ -32,7 +32,7 @@ public class ProximityEnabler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("HELLO");
+        
         if (other.gameObject.CompareTag(Tags.Player) && !HasCompletedBehaviour)
         {
             foreach (var rb in m_ChildRigidbodies)
@@ -40,9 +40,19 @@ public class ProximityEnabler : MonoBehaviour
                 rb.isKinematic = false;
             }
 
+            StressReceiver.Stress();
+            
             HasCompletedBehaviour = true;
 
         }
     }
-    
+
+    private void OnDrawGizmos()
+    {
+        if(m_Collider==null)
+            m_Collider = GetComponent<BoxCollider>();
+        
+        Gizmos.color = new Color(1f, 0f, 0.04f, 0.42f);
+        Gizmos.DrawCube(m_Collider.center + transform.position, m_Collider.size);
+    }
 }

@@ -14,7 +14,11 @@ using UnityEngine.AI;
 namespace ShackJam
 {
     public struct PlayerControlTag : IComponentData {}
-    public struct WanderTag : IComponentData {}
+
+    public struct WanderTag : IComponentData
+    {
+        public float Distance;
+    }
 
     public enum StressBehaviour
     {
@@ -76,7 +80,7 @@ namespace ShackJam
             
             dstManager.AddComponentData(entity,  new PawnData());
             if(!freeze)
-                dstManager.AddComponentData(entity,  new WanderTag());
+                dstManager.AddComponentData(entity,  new WanderTag{Distance = 1});
             
             if(directControl)
                 dstManager.AddComponent<PlayerControlTag>(entity);

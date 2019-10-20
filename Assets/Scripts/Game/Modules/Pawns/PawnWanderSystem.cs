@@ -31,10 +31,15 @@ public class PawnWanderController : ComponentSystem
 
     protected override void OnUpdate()
     {
-        Entities.With(wanderQuery).ForEach((Entity entity, Pawn pawn, ref Agent agent) =>
+        Entities.With(wanderQuery).ForEach((Entity entity, Pawn pawn, ref Agent agent, ref WanderTag wanderTag) =>
         {
             //agent.SetDestination(mousepos);
-            var randomPos = new float3(Random.Range(-5, 5), Random.Range(1, 1), Random.Range(-5, 5));
+            var randomPos = new float3(
+                                Random.Range(-wanderTag.Distance, wanderTag.Distance),
+                                Random.Range(wanderTag.Distance, wanderTag.Distance),
+                                Random.Range(-wanderTag.Distance, wanderTag.Distance)) 
+                            + (float3) pawn.transform.position;
+            
             if (RandomPoint(randomPos, _range, out var point)) 
             {
                 //Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
