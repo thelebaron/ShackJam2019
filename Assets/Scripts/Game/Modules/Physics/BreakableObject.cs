@@ -6,7 +6,7 @@ namespace Game.Modules.Physics
     using Unity.Entities;
     using UnityEngine;
 
-    public class BreakablePlate : MonoBehaviour, IConvertGameObjectToEntity,IDisableable
+    public class BreakableObject : MonoBehaviour, IConvertGameObjectToEntity, IDisableable
     {
         private Rigidbody m_Rigidbody;
         [SerializeField] private List<GameObject> breakPrefabs;
