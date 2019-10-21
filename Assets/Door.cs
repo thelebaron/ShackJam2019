@@ -22,6 +22,8 @@ public class Door : MonoBehaviour
     public float3 openAngle;
     public float3 closedAngle;
     
+    public StressBehaviour StressReceiver;
+    
     private void Start()
     {
         //angleOpen = transform.rotation.eulerAngles.y + 90f;
@@ -78,7 +80,9 @@ public class Door : MonoBehaviour
                     //Debug.Log("isOpen");
                     isOpen = false;
                     isOpening = true;
-
+                    
+                    if(StressReceiver!=null)
+                        StressReceiver.Stress();
                 }
             }
             

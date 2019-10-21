@@ -5,11 +5,13 @@ using Game.Modules.Hybrid;
 using ShackJam;
 using Unity.Entities;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class StressBehaviour :  EntityBehaviour
 {
     public bool isStressed;
 
+    private NavMeshAgent NavMeshAgent;
     private LerpMaterial LerpMaterial;
     private List<LerpMaterial> LerpMaterials = new List<LerpMaterial>();
     private Pawn pawn;
@@ -19,10 +21,11 @@ public class StressBehaviour :  EntityBehaviour
     [SerializeField] private StressType m_StressType;
     [SerializeField] private float wanderDistance = 2f;
 
+    
     private void Start()
     {
         mouth = GetComponent<MouthController>();
-        
+        NavMeshAgent = GetComponent<NavMeshAgent>();
         var list = GetComponentsInChildren<LerpMaterial>();
         foreach (LerpMaterial lerp in list)
         {
@@ -45,19 +48,26 @@ public class StressBehaviour :  EntityBehaviour
             lerp.enabled = true;
         }
 
-        if (m_StressType == StressType.Wander)
+        if (m_StressType == StressType.Wander || m_StressType == StressType.WanderAndSick)
         {
+            NavMeshAgent.enabled = true;
             World.Active.EntityManager.AddComponentData(Entity, new WanderTag{ Distance = wanderDistance});
         }
 
         if (mouth != null)
             mouth.OpenSesame();
+        
+        if (m_StressType == StressType.Sick || m_StressType == StressType.WanderAndSick)
+        {
+            if (mouth != null)
+                mouth.Vomiting = true;
+        }
     }
     
 }
 
 public enum StressType
 {
-    Wander,
+    Wander,Nothing,WanderAndSick,Sick
 
 }

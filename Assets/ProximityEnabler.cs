@@ -11,6 +11,8 @@ public class ProximityEnabler : MonoBehaviour
 
     public StressBehaviour StressReceiver;
 
+    [SerializeField] private List<StressBehaviour> StressReceivers = new List<StressBehaviour>();
+
     [SerializeField] private bool HasCompletedBehaviour;
     [SerializeField] private List<Rigidbody> m_ChildRigidbodies = new List<Rigidbody>();
     [SerializeField]private BoxCollider m_Collider;
@@ -40,7 +42,16 @@ public class ProximityEnabler : MonoBehaviour
                 rb.isKinematic = false;
             }
 
-            StressReceiver.Stress();
+            if(StressReceiver!=null)
+                StressReceiver.Stress();
+
+            if (StressReceivers.Count > 0)
+            {
+                foreach (var stressReceiver in StressReceivers)
+                {
+                    stressReceiver.Stress();
+                }
+            }
             
             HasCompletedBehaviour = true;
 
