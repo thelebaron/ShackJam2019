@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class StressBehaviour :  EntityBehaviour
 {
-    private bool isStressed;
+    public bool isStressed;
 
     private LerpMaterial LerpMaterial;
     private List<LerpMaterial> LerpMaterials = new List<LerpMaterial>();

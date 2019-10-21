@@ -13,6 +13,13 @@ namespace ShackJam
         public float3 MousePosition;
     }
     
+    public struct MenuState : IComponentData
+    {
+        public bool   Started;
+        public bool   Escape;
+        public float InputBlockTimer;
+    }
+    
     public struct PlayerInputData : IComponentData
     {
         public float3 CurrentMousePosition;
@@ -31,12 +38,20 @@ namespace ShackJam
 
         protected override void OnUpdate()
         {
-            Entities.With(MouseInputQuery).ForEach((Entity entity, ref UserInput input, ref PlayerInputData playerInputData) =>
+            Entities.With(MouseInputQuery).ForEach((Entity entity, ref UserInput input, ref PlayerInputData playerInputData, ref MenuState menuState) =>
                 {
+                    
+                    
                     input.LeftClick = Input.GetKey(KeyCode.Mouse0);
                     input.RightClick = Input.GetKey(KeyCode.Mouse1);
                     input.MousePosition = Input.mousePosition;
 
+                    if (Input.anyKey)
+                        menuState.Started = true;
+                    
+                    if(!menuState.Started)
+                        return;
+                    
                     var camera = Camera.main;
                     
                     if (camera != null)

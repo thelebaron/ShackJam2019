@@ -9,6 +9,7 @@ namespace ShackJam
         {
             dstManager.AddComponent<UserInput>(entity);
             dstManager.AddComponent<PlayerInputData>(entity);
+            dstManager.AddComponent<MenuState>(entity);
         }
     }
 }
