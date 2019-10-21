@@ -38,8 +38,9 @@ public class Toggles : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
         
-        //if(Input.GetKey(KeyCode.R))
-            //SceneManager.LoadScene(0, LoadSceneMode.Single);
+        /*
+        if(Input.GetKey(KeyCode.R))
+            SceneManager.LoadScene(0, LoadSceneMode.Single);*/
     }
 }
 

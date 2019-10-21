@@ -28,7 +28,7 @@ public class CameraDataAuthoring : MonoBehaviour, IConvertGameObjectToEntity
         {
             ScrollSpeed = ScrollSpeed,
             ScrollEdge = ScrollEdge,
-            PanSpeed = PanSpeed
+            PanSpeed = PanSpeed, lockOn = true
         });
         //dstManager.AddComponentData(entity, new Disabled());
     }
