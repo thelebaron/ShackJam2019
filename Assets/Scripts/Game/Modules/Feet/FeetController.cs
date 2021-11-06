@@ -6,7 +6,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class FeetController : MonoBehaviour
 {
     public float PositionOffset = 1;
@@ -38,8 +38,8 @@ public class FeetController : MonoBehaviour
     private NavMeshAgent _agent;
     private void Awake()
     {
-        if(!Application.isPlaying)
-            return;
+        //if(!Application.isPlaying)
+            //return;
         //unparent
         LeftFoot.transform.SetParent(null);
         RightFoot.transform.SetParent(null);
@@ -48,10 +48,10 @@ public class FeetController : MonoBehaviour
     
     private void Update()
     {
-        if(Application.isPlaying)
+        //if(Application.isPlaying)
             currentVelocity = _agent.velocity.magnitude;
-        if(Application.isPlaying)
-            return;
+        //if(Application.isPlaying)
+            //return;
         LeftLegLineRenderer.SetPosition(0, LeftHipSocket.transform.position);
         LeftLegLineRenderer.SetPosition(1, LeftFoot.transform.position);
         RightLegLineRenderer.SetPosition(0, RightHipSocket.transform.position);
